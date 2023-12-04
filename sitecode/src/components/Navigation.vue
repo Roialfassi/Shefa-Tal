@@ -10,7 +10,7 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img src="@/assets/img/logo.png" alt="Logo" />
+            <img src="@/assets/img/talilogo.jpg" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="title"></v-list-item-title>
@@ -106,10 +106,10 @@ export default {
     items: [
       ["mdi-home-outline", "בית", "#hero"],
       ["mdi-information-outline", "קצת עלינו", "#about"],
-      ["mdi-information-outline", "סוגי האירועים", "#features"],
-      ["mdi-download-box-outline", "מחירים", "#pricing"],
-      ["mdi-currency-usd", "שאלות ותשובות", "#qna"],
-      ["mdi-email-outline", "לקוחות ממליצים", "#testimonials-slider"],
+      ["mdi-food-fork-drink", "סוגי האירועים", "#features"],
+      ["mdi-currency-btc", "מחירים", "#pricing"],
+      ["mdi-comment-question-outline", "שאלות ותשובות", "#qna"],
+      ["mdi-check-circle", "לקוחות ממליצים", "#testimonials-slider"],
       ["mdi-email-outline", "צרו קשר", "#contact"],
     ],
   }),

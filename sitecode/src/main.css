@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #007bff;
+    --font-family: Calibri		;
+  }
+body {
+    font-family: var(--font-family) !important;
+  }
+  .v-application
+  {
+    font-family:var(--font-family) !important;
+  }
+  .v-application .subtitle-1{
+    font-family: var(--font-family) !important;
+  }
+  .v-application .font-weight-bold{
+    font-family: var(--font-family) !important;
+  }
+  .v-application .text-h5{
+    font-family: var(--font-family) !important;
+  }
+  .v-application .font-weight-light{
+    font-family: var(--font-family) !important;
+  }
