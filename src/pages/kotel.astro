@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import ArchPlaceholder from '../components/ArchPlaceholder.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { waLink } from '../data/site';
+
+const waKotel = waLink('שלום טלי! אנחנו מתכננים אירוע בכותל ואשמח לשמוע פרטים.');
+
+const steps = [
+  {
+    title: 'מתאמים את הבוקר',
+    text: 'שעה, מקום מפגש ברחבת הכותל או בעיר העתיקה, ומה חשוב לכם שיקרה.',
+  },
+  {
+    title: 'בונים תפריט חגיגי',
+    text: 'ארוחת בוקר חלבית עשירה או כיבוד חגיגי — מותאם למספר האורחים ולתקציב.',
+  },
+  {
+    title: 'אתם חוגגים, אנחנו דואגים לכל השאר',
+    text: 'אנחנו במרחק דקות הליכה מהכותל — הכל מגיע טרי, ערוך ומוכן בזמן.',
+  },
+];
+---
+
+<Base
+  title="בר מצווה ואירועים בכותל — קייטרינג שפע טל ירושלים"
+  description="חוגגים בר מצווה או הנחת תפילין בכותל? קייטרינג ביתי במרחק דקות הליכה מהכותל המערבי: ארוחת בוקר חגיגית, כיבוד מלא וליווי צמוד ביום השמחה."
+>
+  <section class="section">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">אירועים בכותל ובעיר העתיקה</p>
+        <h1>שמחה מול אבני הכותל, שפע מהמטבח של טלי</h1>
+        <p class="lead">
+          הנחת תפילין, עלייה לתורה, סיורים וכנסים — המטבח שלנו נמצא בצמוד לעיר
+          העתיקה, כך שהכל מגיע טרי וחם בדיוק בזמן.
+        </p>
+        <a class="btn btn-whatsapp" href={waKotel} target="_blank" rel="noopener">לתיאום אירוע בכותל</a>
+      </div>
+      <ArchPlaceholder
+        src="/images/tallit-boy.jpg"
+        alt="נער בר מצווה עוטה טלית ומניח תפילין"
+        ratio="4 / 5"
+        class="kotel-arch"
+      />
+    </div>
+  </section>
+
+  <section class="section steps-band">
+    <div class="container">
+      <h2 class="center">איך זה עובד</h2>
+      <ol class="steps">
+        {
+          steps.map((step) => (
+            <li>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="quote">
+    <div class="container quote-wrap">
+      <h2 class="center">ספרו לנו על האירוע</h2>
+      <QuoteForm />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-grid .btn {
+    margin-top: 1rem;
+  }
+
+  :global(.kotel-arch) {
+    max-width: 340px;
+    justify-self: center;
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.kotel-arch) {
+      max-width: 280px;
+      order: -1;
+    }
+  }
+
+  .steps-band {
+    background: linear-gradient(150deg, var(--blue-900), var(--blue-700));
+    color: var(--blue-100);
+  }
+
+  .steps-band h2,
+  .steps-band h3 {
+    color: var(--paper);
+  }
+
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+  }
+
+  .steps li {
+    counter-increment: step;
+  }
+
+  .steps h3::before {
+    content: counter(step, hebrew) '. ';
+    color: var(--stone-200);
+  }
+
+  .quote-wrap {
+    max-width: 46rem;
+  }
+
+  .quote-wrap h2 {
+    margin-bottom: 2rem;
+  }
+</style>

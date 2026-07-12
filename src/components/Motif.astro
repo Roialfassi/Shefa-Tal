@@ -1,0 +1,77 @@
+---
+// Line-engraved motifs, one consistent stroke style.
+// Used as brand marks and as placeholder art until real photos arrive.
+interface Props {
+  name: 'pomegranate' | 'dairy' | 'meat' | 'custom' | 'platter' | 'arch';
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {
+    name === 'pomegranate' && (
+      <>
+        <circle cx="32" cy="38" r="17" />
+        <path d="M26 22.5 24 13l5 4 3-7 3 7 5-4-2 9.5" />
+        <circle cx="27" cy="36" r="1.6" fill="currentColor" />
+        <circle cx="36" cy="33" r="1.6" fill="currentColor" />
+        <circle cx="33" cy="43" r="1.6" fill="currentColor" />
+      </>
+    )
+  }
+  {
+    name === 'dairy' && (
+      <>
+        <path d="M10 44h44l-6-18a22 22 0 0 0-32 0Z" />
+        <path d="M10 44c0 4 2 7 5 7h34c3 0 5-3 5-7" />
+        <path d="M22 32c1-3 3-5 6-6M34 26c3 1 5 3 6 6" />
+      </>
+    )
+  }
+  {
+    name === 'meat' && (
+      <>
+        <path d="M14 30h36v12a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10Z" />
+        <path d="M14 34H8m48 0h-6" />
+        <path d="M26 22c0-3 2-4 2-7m8 7c0-3 2-4 2-7" />
+      </>
+    )
+  }
+  {
+    name === 'custom' && (
+      <>
+        <path d="M20 12c-3 14 2 22 12 24 8 1.6 12 6 11 14" />
+        <circle cx="42" cy="52" r="6" />
+        <path d="M44 14v10M39 19h10" />
+      </>
+    )
+  }
+  {
+    name === 'platter' && (
+      <>
+        <path d="M8 46h48" />
+        <path d="M14 46a18 18 0 0 1 36 0" />
+        <circle cx="32" cy="22" r="3" />
+      </>
+    )
+  }
+  {
+    name === 'arch' && (
+      <>
+        <path d="M14 54V30a18 18 0 0 1 36 0v24" />
+        <path d="M8 54h48" />
+        <path d="M14 40h36M32 22v-8" />
+      </>
+    )
+  }
+</svg>

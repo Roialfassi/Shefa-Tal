@@ -1,0 +1,147 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArchPlaceholder from '../../components/ArchPlaceholder.astro';
+import Motif from '../../components/Motif.astro';
+import { site, waLink } from '../../data/site';
+
+// English landing page for Diaspora families planning a Western Wall
+// bar/bat mitzvah — they search in English and book from abroad.
+const waEn = waLink(
+  "Hello Tali! We're planning a bar/bat mitzvah at the Western Wall and would love a quote.",
+);
+
+const points = [
+  {
+    motif: 'arch',
+    title: 'Minutes from the Kotel',
+    text: "Tali's home kitchen sits beside the Old City — everything arrives fresh and on time.",
+  },
+  {
+    motif: 'dairy',
+    title: 'A festive Jerusalem breakfast',
+    text: 'Homemade quiches, cheeses, fresh salads, pastries and desserts after the tefillin ceremony.',
+  },
+  {
+    motif: 'custom',
+    title: 'Planned with you, from anywhere',
+    text: 'Menus, timing and setup are arranged over WhatsApp — in English — before you land.',
+  },
+] as const;
+---
+
+<Base
+  lang="en"
+  title="Bar Mitzvah Catering at the Western Wall, Jerusalem — Shefa Tal Catering"
+  description="Celebrating a bar or bat mitzvah at the Western Wall? Home-kitchen kosher catering minutes from the Kotel: festive Jerusalem breakfast, full setup, planned with you over WhatsApp in English."
+>
+  <section class="section">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Western Wall · Old City · Jerusalem</p>
+        <h1>A bar mitzvah at the Kotel deserves a Jerusalem table</h1>
+        <p class="lead">
+          Tali caters tefillin ceremonies and bar & bat mitzvah celebrations at the
+          Western Wall from her home kitchen in the Old City — abundant, homemade,
+          kosher, and arranged with your family over WhatsApp before you even land.
+        </p>
+        <div class="ctas">
+          <a class="btn btn-whatsapp" href={waEn} target="_blank" rel="noopener">Message Tali on WhatsApp</a>
+          <a class="btn btn-outline" href={`tel:+${site.phoneIntl}`}>Call {site.phoneDisplay}</a>
+        </div>
+        <p class="promise">We reply to every inquiry within one business day.</p>
+      </div>
+      <ArchPlaceholder
+        src="/images/tallit-boy.jpg"
+        alt="A bar mitzvah boy wrapped in a tallit, laying tefillin"
+        ratio="4 / 5"
+        class="en-arch"
+      />
+    </div>
+  </section>
+
+  <section class="section points-band">
+    <div class="container">
+      <ul class="points">
+        {
+          points.map((p) => (
+            <li>
+              <Motif name={p.motif} class="point-motif" />
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section center">
+    <div class="container">
+      <h2>Tell us about your simcha</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Date, number of guests, and what you're celebrating — we'll take it from there.
+      </p>
+      <a class="btn btn-whatsapp" href={waEn} target="_blank" rel="noopener">Start planning on WhatsApp</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .promise {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--blue-700);
+    font-size: 0.95rem;
+  }
+
+  :global(.en-arch) {
+    max-width: 340px;
+    justify-self: center;
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.en-arch) {
+      max-width: 280px;
+      order: -1;
+    }
+  }
+
+  .points-band {
+    background: var(--stone-100);
+  }
+
+  .points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  :global(.point-motif) {
+    width: 44px;
+    height: 44px;
+    color: var(--pom-600);
+    margin: 0 auto 0.75rem;
+  }
+</style>

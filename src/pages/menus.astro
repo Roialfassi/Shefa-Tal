@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import MenuCard from '../components/MenuCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { menus, pricingNote } from '../data/menus';
+import { testimonials } from '../data/testimonials';
+import { waLink } from '../data/site';
+
+const menuTestimonial = testimonials.find((t) => t.name === 'תהל זעפרני')!;
+const waMenus = waLink('שלום טלי! עברתי על התפריטים באתר ואשמח להצעת מחיר.');
+---
+
+<Base
+  title="תפריטים — קייטרינג שפע טל | חלבי, בשרי ובהתאמה אישית"
+  description="תפריטי קייטרינג ביתי בירושלים: תפריט חלבי לאירועי בוקר ובריתות, תפריט בשרי לסעודות מצווה, ותפריט בהתאמה אישית לפי התקציב שלכם."
+>
+  <section class="section">
+    <div class="container center">
+      <p class="eyebrow eyebrow-center">התפריטים שלנו</p>
+      <h1>מה עולה על השולחן</h1>
+      <p class="lead">
+        כל תפריט כאן הוא נקודת פתיחה — מוסיפים, מחליפים ומתאימים לטעם שלכם ולתקציב.
+      </p>
+    </div>
+  </section>
+
+  <section class="container menus-stack">
+    {
+      menus.map((menu) => (
+        <div id={menu.id} class="menu-anchor">
+          <MenuCard menu={menu} />
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="section">
+    <div class="container pricing-wrap">
+      <div class="card pricing-card">
+        <h2>כמה זה עולה?</h2>
+        <p>{pricingNote}</p>
+        <a class="btn btn-whatsapp" href={waMenus} target="_blank" rel="noopener">לקבלת הצעת מחיר</a>
+      </div>
+      <TestimonialCard t={menuTestimonial} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .menus-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .menu-anchor {
+    scroll-margin-top: 6rem;
+  }
+
+  .pricing-wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 56rem;
+  }
+
+  .pricing-card h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-card .btn {
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 700px) {
+    .pricing-wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

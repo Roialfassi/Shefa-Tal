@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import ArchPlaceholder from '../components/ArchPlaceholder.astro';
+import { waLink } from '../data/site';
+
+// Real photos from Tali's events (imported from the previous site).
+// To add more: drop images into /public/gallery/ and add entries here.
+const photos = [
+  { src: '/gallery/full-spread.jpg', alt: 'שולחן ערוך בשפע — סלטים, מאפים ולחמים' },
+  { src: '/gallery/fruit-platter.jpg', alt: 'פלטת פירות העונה עם ענבים וקרמבולה' },
+  { src: '/gallery/cheese-platter.jpg', alt: 'פלטת גבינות עם עגבניות שרי וזעתר' },
+  { src: '/gallery/onion-quiche.jpg', alt: 'טארט בצל מקורמל חם מהתנור' },
+  { src: '/gallery/salad-table.jpg', alt: 'שולחן סלטים טריים וירקות חתוכים דק' },
+  { src: '/gallery/mousse-cups.jpg', alt: 'כוסות מוס שוקולד אישיות' },
+  { src: '/gallery/stone-courtyard.jpg', alt: 'עמדת כיבוד בחצר ירושלמית עתיקה מאבן' },
+  { src: '/gallery/bread-table.jpg', alt: 'לחמים ומאפים טריים באירוע באולם' },
+  { src: '/gallery/veggie-cups.jpg', alt: 'כוסות ירקות ומטבלים ומנות אישיות' },
+  { src: '/gallery/meat-board.jpg', alt: 'עוף צלוי מוגש על מגש שחור' },
+  { src: '/gallery/salmon-board.jpg', alt: 'סלמון אפוי שלם על קרש הגשה' },
+  { src: '/gallery/chocolate-tarts.jpg', alt: 'ריבועי טארט שוקולד עם אגוזים' },
+  { src: '/gallery/outdoor-table.jpg', alt: 'שולחן ערוך בחוץ עם כוסות יין' },
+  { src: '/gallery/sweets-table.jpg', alt: 'עמדת מתוקים ושתייה באירוע לילדים' },
+] as const;
+
+const waGallery = waLink('שלום טלי! ראיתי את הגלריה באתר ואשמח לשמוע פרטים על אירוע.');
+---
+
+<Base
+  title="גלריה — קייטרינג שפע טל | תמונות מאירועים בירושלים"
+  description="תמונות מאירועים של קייטרינג שפע טל: בריתות, בר ובת מצווה, אירועים בכותל ושולחנות ערוכים בשפע ירושלמי ביתי."
+>
+  <section class="section">
+    <div class="container center">
+      <p class="eyebrow eyebrow-center">הגלריה</p>
+      <h1>רואים את השפע</h1>
+      <p class="lead">טעימה בעיניים מהאירועים שלנו — כל תמונה היא שמחה של משפחה אחרת.</p>
+    </div>
+  </section>
+
+  <section class="container gallery-grid">
+    {photos.map((photo) => <ArchPlaceholder src={photo.src} alt={photo.alt} ratio="3 / 4" />)}
+  </section>
+
+  <section class="section center">
+    <div class="container">
+      <p class="lead" style="margin-inline: auto;">רוצים שהאירוע הבא בגלריה יהיה שלכם?</p>
+      <a class="btn btn-whatsapp" href={waGallery} target="_blank" rel="noopener">דברו איתנו</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Alternating vertical rhythm, like arches along an old street */
+  .gallery-grid > :global(figure:nth-child(even)) {
+    transform: translateY(1.25rem);
+  }
+
+  @media (max-width: 560px) {
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

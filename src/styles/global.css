@@ -1,0 +1,300 @@
+/* ═══════════════════════════════════════════════════════════
+   Shefa Tal Catering — design system
+   Material: Jerusalem stone. Motif: the arched doorway.
+   Accents: pomegranate garnet (שפע/abundance) + tile blue.
+   Display: Suez One. Body: Assistant.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Jerusalem stone — warm, faintly blushed, not flat cream */
+  --stone-50: #f8f2e7;
+  --stone-100: #f1e8d7;
+  --stone-200: #e5d7bd;
+  --stone-400: #bfa87e;
+  --paper: #fffcf4;
+
+  /* Ink — warm brown-black, like old print */
+  --ink: #2c221a;
+  --ink-soft: #61544a;
+
+  /* Pomegranate garnet — primary action color */
+  --pom-700: #7e1f1a;
+  --pom-600: #9e2b25;
+  --pom-100: #f4ddd7;
+
+  /* Jerusalem tile blue — Kotel / trust sections */
+  --blue-900: #12384a;
+  --blue-700: #1c5568;
+  --blue-500: #2f7e96;
+  --blue-100: #dcebef;
+
+  --whatsapp: #1faa53;
+
+  --font-display: 'Suez One', 'David Libre', serif;
+  --font-body: 'Assistant Variable', 'Assistant', system-ui, sans-serif;
+
+  /* Arch radius: full half-circle top, gently squared bottom */
+  --arch: 999px 999px 14px 14px;
+
+  --shadow-card: 0 2px 6px rgba(44, 34, 26, 0.08), 0 14px 32px -18px rgba(44, 34, 26, 0.25);
+  --maxw: 68rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--stone-50);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--blue-700);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--blue-500);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+/* Eyebrow: small caps-like label with a stone rule */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--pom-600);
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Centered eyebrows (section headers) drop the leading rule */
+.eyebrow.eyebrow-center::before {
+  display: none;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--pom-600);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: var(--pom-700);
+  color: var(--paper);
+}
+
+.btn-outline {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-whatsapp {
+  background: var(--whatsapp);
+  color: #fff;
+}
+
+.btn-whatsapp:hover {
+  background: #178a43;
+  color: #fff;
+}
+
+.btn-light {
+  background: var(--paper);
+  color: var(--blue-900);
+}
+
+.btn-light:hover {
+  background: var(--stone-100);
+  color: var(--blue-900);
+}
+
+/* ── The arch: the site's signature frame ── */
+.arch-frame {
+  border-radius: var(--arch);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 6px solid var(--paper);
+  background: linear-gradient(168deg, var(--stone-100) 0%, var(--stone-200) 55%, var(--stone-400) 130%);
+}
+
+.arch-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder interior until real photos arrive */
+.arch-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 2rem 1.25rem;
+  color: var(--ink-soft);
+  min-height: 100%;
+}
+
+.arch-placeholder svg {
+  width: clamp(56px, 30%, 96px);
+  opacity: 0.85;
+}
+
+.arch-placeholder .ph-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--stone-400);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--paper);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+/* ── Stone course divider: rows of Kotel-like stones ── */
+.stone-divider {
+  height: 14px;
+  background-image:
+    linear-gradient(to bottom, transparent 45%, var(--stone-200) 45%, var(--stone-200) 55%, transparent 55%),
+    linear-gradient(to left, transparent 92%, var(--stone-200) 92%);
+  background-size: 100% 14px, 64px 14px;
+  opacity: 0.9;
+  border: 0;
+  margin: 0;
+}
+
+/* ── Utility ── */
+.lead {
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  color: var(--ink-soft);
+  max-width: 44ch;
+}
+
+.center {
+  text-align: center;
+}
+
+.center .lead {
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

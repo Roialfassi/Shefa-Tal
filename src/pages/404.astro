@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Motif from '../components/Motif.astro';
+---
+
+<Base title="הדף לא נמצא — קייטרינג שפע טל" description="הדף שחיפשתם לא נמצא.">
+  <section class="section center">
+    <div class="container">
+      <Motif name="arch" class="lost-motif" />
+      <h1>הדף הזה לא בתפריט</h1>
+      <p class="lead" style="margin-inline: auto;">אבל יש לנו הרבה דברים טעימים אחרים.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">לעמוד הבית</a>
+        <a class="btn btn-outline" href="/menus">לתפריטים</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  :global(.lost-motif) {
+    width: 90px;
+    margin: 0 auto 1.5rem;
+    color: var(--stone-400);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+</style>

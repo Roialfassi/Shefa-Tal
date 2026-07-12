@@ -1,0 +1,17 @@
+{
+  "name": "shefatal-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/assistant": "^5.2.5",
+    "@fontsource/suez-one": "^5.2.5",
+    "astro": "^5.7.5"
+  }
+}

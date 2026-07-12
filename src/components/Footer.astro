@@ -1,0 +1,122 @@
+---
+import { site, waLink, defaultWaMessage } from '../data/site';
+
+interface Props {
+  lang?: 'he' | 'en';
+}
+const { lang = 'he' } = Astro.props;
+const he = lang === 'he';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img class="footer-mark" src="/images/logo.png" alt="" width="56" height="56" loading="lazy" />
+      <p class="footer-name">{he ? site.name : site.nameEn}</p>
+      <p class="footer-tagline">{he ? site.tagline : 'Naturally homemade.'}</p>
+    </div>
+
+    <div>
+      <h3>{he ? 'דברו איתנו' : 'Talk to us'}</h3>
+      <ul class="footer-list">
+        <li><a href={`tel:+${site.phoneIntl}`}>{site.phoneDisplay}</a></li>
+        <li><a href={waLink(defaultWaMessage)} target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={site.facebookUrl} target="_blank" rel="noopener">Facebook</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>{he ? 'איפה אנחנו' : 'Find us'}</h3>
+      <ul class="footer-list">
+        <li>{he ? site.address : site.addressEn}</li>
+        <li>{he ? site.neighborhood : "Batei Nissan, by the Old City"}</li>
+        <li><a href={site.wazeUrl} target="_blank" rel="noopener">{he ? 'ניווט ב-Waze' : 'Navigate with Waze'}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>{he ? 'טוב לדעת' : 'Good to know'}</h3>
+      <ul class="footer-list">
+        <li>{he ? site.kashrut : 'Kosher — ask Tali for details'}</li>
+        <li>{he ? site.replyPromise : 'We reply within one business day'}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} {he ? site.name : site.nameEn}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--blue-900);
+    color: var(--blue-100);
+    margin-top: auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding-block: 3rem 2rem;
+  }
+
+  .footer-mark {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0.5rem;
+    background: var(--paper);
+    border-radius: 50%;
+    padding: 2px;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--paper);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-tagline {
+    color: var(--stone-200);
+    font-weight: 600;
+  }
+
+  h3 {
+    color: var(--paper);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .footer-list a {
+    color: var(--blue-100);
+  }
+
+  .footer-list a:hover {
+    color: var(--paper);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(220, 235, 239, 0.2);
+    border-top: 1px solid color-mix(in srgb, var(--blue-100) 20%, transparent);
+    padding-block: 1rem;
+    font-size: 0.85rem;
+    color: rgba(220, 235, 239, 0.75);
+    color: color-mix(in srgb, var(--blue-100) 75%, transparent);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+</style>

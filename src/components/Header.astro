@@ -1,0 +1,198 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  lang?: 'he' | 'en';
+}
+const { lang = 'he' } = Astro.props;
+
+const nav =
+  lang === 'he'
+    ? [
+        { href: '/', label: 'בית' },
+        { href: '/menus', label: 'תפריטים' },
+        { href: '/kotel', label: 'אירועים בכותל' },
+        { href: '/gallery', label: 'גלריה' },
+        { href: '/about', label: 'הסיפור שלנו' },
+        { href: '/contact', label: 'צור קשר' },
+      ]
+    : [
+        { href: '/en', label: 'Home' },
+        { href: '/', label: 'עברית' },
+      ];
+
+const callLabel = lang === 'he' ? 'התקשרו' : 'Call';
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={lang === 'he' ? '/' : '/en'}>
+      <img class="brand-mark" src="/images/logo.png" alt="" width="44" height="44" />
+      <span class="brand-text">
+        <strong>{lang === 'he' ? 'שפע טל' : 'Shefa Tal'}</strong>
+        <small>{lang === 'he' ? 'קייטרינג ביתי · ירושלים' : 'Home catering · Jerusalem'}</small>
+      </span>
+    </a>
+
+    <nav aria-label={lang === 'he' ? 'ניווט ראשי' : 'Main navigation'}>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="visually-hidden">{lang === 'he' ? 'תפריט ניווט' : 'Menu'}</span>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+      <ul id="site-nav" class="nav-list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav-call">
+          <a class="btn btn-primary btn-sm" href={`tel:+${site.phoneIntl}`}>
+            {callLabel} {site.phoneDisplay}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 252, 244, 0.94);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--stone-200);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .brand-text strong {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.35rem;
+  }
+
+  .brand-text small {
+    color: var(--ink-soft);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--ink);
+    padding: 0.4rem;
+    cursor: pointer;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list a:not(.btn) {
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-list a:not(.btn):hover,
+  .nav-list a[aria-current='page']:not(.btn) {
+    color: var(--pom-600);
+    border-bottom-color: var(--pom-600);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 820px) {
+    .nav-toggle {
+      display: block;
+    }
+
+    .nav-list {
+      display: none;
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--paper);
+      border-bottom: 1px solid var(--stone-200);
+      padding: 0.75rem 1.25rem 1.25rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .nav-list.open {
+      display: flex;
+    }
+
+    .nav-list a:not(.btn) {
+      display: block;
+      padding: 0.6rem 0.25rem;
+      border-bottom: 1px solid var(--stone-100);
+    }
+
+    .nav-call {
+      margin-top: 0.5rem;
+    }
+
+    .nav-call .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const list = document.getElementById('site-nav');
+  toggle?.addEventListener('click', () => {
+    const open = list?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(Boolean(open)));
+  });
+</script>

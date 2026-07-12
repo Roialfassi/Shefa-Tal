@@ -1,0 +1,40 @@
+---
+import { waLink, defaultWaMessage } from '../data/site';
+
+interface Props {
+  lang?: 'he' | 'en';
+}
+const { lang = 'he' } = Astro.props;
+const label = lang === 'he' ? 'שליחת הודעת וואטסאפ לטלי' : 'Message Tali on WhatsApp';
+---
+
+<a class="wa-fab" href={waLink(defaultWaMessage)} target="_blank" rel="noopener" aria-label={label} title={label}>
+  <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
+    <path
+      d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4 29l7.3-2.2c1.9 1 3.9 1.5 4.7 1.5 6.6 0 12-5.3 12-11.9S22.6 3 16 3Zm0 21.6c-1.4 0-3.2-.5-4.6-1.4l-.5-.3-3.6 1.1 1.1-3.4-.4-.6c-1.2-1.6-1.9-3.6-1.9-5.6 0-5.3 4.4-9.6 9.9-9.6s9.9 4.3 9.9 9.6-4.4 9.7-9.9 9.7Zm5.4-7.2c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.3.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.8-.7 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4Z"
+    />
+  </svg>
+</a>
+
+<style>
+  .wa-fab {
+    position: fixed;
+    bottom: 1.25rem;
+    inset-inline-end: 1.25rem;
+    z-index: 50;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(31, 170, 83, 0.45);
+    transition: transform 0.15s ease;
+  }
+
+  .wa-fab:hover {
+    transform: scale(1.08);
+    color: #fff;
+  }
+</style>

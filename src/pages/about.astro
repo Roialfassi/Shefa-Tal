@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import ArchPlaceholder from '../components/ArchPlaceholder.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { site, waLink, defaultWaMessage } from '../data/site';
+import { testimonials } from '../data/testimonials';
+---
+
+<Base
+  title="הסיפור שלנו — קייטרינג שפע טל | טלי הר נוי, ירושלים"
+  description="הסיפור של קייטרינג שפע טל: המטבח הביתי של טלי הר נוי בבית ירושלמי עתיק בשכונת בתי ניסן, בצמוד לעיר העתיקה. טבעי שתבחרו ביתי."
+>
+  <section class="section">
+    <div class="container story-grid">
+      <div>
+        <p class="eyebrow">הסיפור שלנו</p>
+        <h1>בבית ירושלמי עתיק ומיוחד יש מטבח עם קסם נפלא</h1>
+        <p class="lead">
+          מהמטבח הביתי שלי אני מציעה מגוון של תפריטים המותאמים לכל אירוע, עם הנגיעה
+          והטעם שרק מטבח ביתי יכול לתת.
+        </p>
+        <p>
+          הקייטרינג פועל משכונת בתי ניסן ב"ק המתחדשת, בצמוד לעיר העתיקה בירושלים,
+          ומגיע לכל מקום שתרצו. הוא מתאים לכל אירוע — ובמיוחד לאירועים במרחב העיר
+          העתיקה: בריתות, בר ובת מצווה, הנחת תפילין בכותל, סיורים וכנסים.
+        </p>
+        <p>
+          רוצים גם שקט ביום האירוע? יש אפשרות לניהול מלא של האירוע — כך שאתם
+          נשארים פנויים לאורחים ולשמחה.
+        </p>
+        <p class="signature">
+          בברכה,<br />
+          <strong>{site.owner}</strong> · {site.name}<br />
+          <em>{site.tagline}</em>
+        </p>
+        <a class="btn btn-whatsapp" href={waLink(defaultWaMessage)} target="_blank" rel="noopener">דברו עם טלי</a>
+      </div>
+      <div class="story-arches">
+        <ArchPlaceholder
+          src="/gallery/stone-courtyard.jpg"
+          alt="עמדת כיבוד בחצר ירושלמית עתיקה מאבן"
+          ratio="3 / 4"
+        />
+        <ArchPlaceholder
+          src="/images/veg-platter.jpg"
+          alt="פלטת ירקות טריים מהמטבח של טלי"
+          ratio="3 / 4"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials-band" id="testimonials">
+    <div class="container center">
+      <p class="eyebrow eyebrow-center">ממליצים עלינו</p>
+      <h2>מילים של אורחים שכבר שמחו איתנו</h2>
+      <div class="testimonials-grid">
+        {testimonials.map((t) => <TestimonialCard t={t} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .story-grid .btn {
+    margin-top: 0.75rem;
+  }
+
+  .story-arches {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .story-arches > :global(figure:last-child) {
+    margin-top: -0.25rem;
+    transform: translateY(1.5rem);
+  }
+
+  .signature {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 760px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .story-arches {
+      grid-template-columns: 1fr 1fr;
+      max-width: 420px;
+    }
+  }
+
+  .testimonials-band {
+    background: var(--stone-100);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    text-align: start;
+  }
+</style>

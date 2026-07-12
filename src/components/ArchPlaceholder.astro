@@ -1,0 +1,44 @@
+---
+// An arch-framed image slot. Until real photos are provided it renders
+// a designed placeholder; pass `src` to show a real photo instead.
+import Motif from './Motif.astro';
+
+interface Props {
+  motif?: 'pomegranate' | 'dairy' | 'meat' | 'custom' | 'platter' | 'arch';
+  label?: string;
+  src?: string;
+  alt?: string;
+  ratio?: string; /* CSS aspect-ratio, e.g. "3 / 4" */
+  eager?: boolean; /* set on above-the-fold images (hero) */
+  class?: string;
+}
+const {
+  motif = 'platter',
+  label,
+  src,
+  alt = '',
+  ratio = '3 / 4',
+  eager = false,
+  class: className,
+} = Astro.props;
+---
+
+<figure class:list={['arch-frame', className]} style={`aspect-ratio: ${ratio};`}>
+  {
+    src ? (
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+    ) : (
+      <div class="arch-placeholder">
+        <Motif name={motif} />
+        {label && <span class="ph-label">{label}</span>}
+      </div>
+    )
+  }
+</figure>
+
+<style>
+  figure {
+    margin: 0;
+    color: var(--stone-400);
+  }
+</style>

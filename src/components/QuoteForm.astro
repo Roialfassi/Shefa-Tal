@@ -1,0 +1,119 @@
+---
+import { site } from '../data/site';
+
+// Four fields only — every extra field costs inquiries.
+// Submit opens WhatsApp with a prefilled message; no server needed.
+const eventTypes = [
+  'ברית / בריתה',
+  'בר מצווה',
+  'בת מצווה',
+  'אירוע בכותל',
+  'שבת חתן / אירוסין',
+  'אזכרה',
+  'אירוע אחר',
+];
+---
+
+<form class="quote-form" data-wa-phone={site.phoneIntl}>
+  <div class="fields">
+    <label>
+      סוג האירוע
+      <select name="event" required>
+        <option value="" disabled selected>בחרו אירוע</option>
+        {eventTypes.map((t) => <option value={t}>{t}</option>)}
+      </select>
+    </label>
+
+    <label>
+      תאריך משוער
+      <input type="date" name="date" />
+    </label>
+
+    <label>
+      מספר אורחים (בערך)
+      <input type="number" name="guests" min="1" inputmode="numeric" placeholder="למשל: 60" />
+    </label>
+
+    <label>
+      טלפון לחזרה
+      <input type="tel" name="phone" required placeholder="050-0000000" autocomplete="tel" />
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-whatsapp">
+    שליחת הפרטים בוואטסאפ
+  </button>
+  <p class="form-note">{site.replyPromise} · אפשר גם להתקשר: <a href={`tel:+${site.phoneIntl}`}>{site.phoneDisplay}</a></p>
+</form>
+
+<style>
+  .quote-form {
+    background: var(--paper);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  input,
+  select {
+    font: inherit;
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--stone-50);
+    border: 1.5px solid var(--stone-200);
+    border-radius: 10px;
+    padding: 0.65rem 0.8rem;
+  }
+
+  input:focus,
+  select:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 1px;
+    border-color: var(--blue-500);
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .form-note {
+    margin: 0.8rem 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+</style>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('.quote-form')) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const lines = [
+        'שלום טלי! אשמח להצעת מחיר לאירוע:',
+        `סוג האירוע: ${data.get('event') || '-'}`,
+        `תאריך משוער: ${data.get('date') || 'עוד לא נקבע'}`,
+        `מספר אורחים: ${data.get('guests') || '-'}`,
+        `טלפון לחזרה: ${data.get('phone') || '-'}`,
+      ];
+      const phone = form.dataset.waPhone;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+</script>

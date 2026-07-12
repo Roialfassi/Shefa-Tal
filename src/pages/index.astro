@@ -1,0 +1,313 @@
+---
+import Base from '../layouts/Base.astro';
+import ArchPlaceholder from '../components/ArchPlaceholder.astro';
+import MenuCard from '../components/MenuCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Motif from '../components/Motif.astro';
+import { site, waLink } from '../data/site';
+import { menus } from '../data/menus';
+import { testimonials } from '../data/testimonials';
+
+const homeTestimonials = testimonials.slice(0, 6);
+
+const trustFacts = [
+  { motif: 'platter', text: 'מטבח ביתי אמיתי — לא קו ייצור' },
+  { motif: 'custom', text: 'תפריט שנתפר אישית לכל אירוע ותקציב' },
+  { motif: 'arch', text: 'מתמחים באירועים בכותל ובעיר העתיקה' },
+  { motif: 'pomegranate', text: 'ליווי מלא ביום השמחה — אתם פנויים לאורחים' },
+] as const;
+
+const heroWa = waLink('שלום טלי! אשמח להצעת מחיר לאירוע.');
+---
+
+<Base
+  title="קייטרינג שפע טל — קייטרינג ביתי בירושלים לבריתות, בר מצווה ואירועים בכותל"
+  description="קייטרינג ביתי מהעיר העתיקה בירושלים: בריתות, בר ובת מצווה, הנחת תפילין בכותל ושמחות משפחתיות. תפריט חלבי, בשרי או בהתאמה אישית. שלחו הודעה וקבלו הצעת מחיר עד יום עסקים."
+>
+  <!-- ── Hero: the doorway into Tali's kitchen ── -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">קייטרינג ביתי · בצמוד לעיר העתיקה, ירושלים</p>
+        <h1>שפע ירושלמי מהמטבח הביתי של טלי</h1>
+        <p class="lead">
+          תפריט שנתפר אישית לברית, לבר המצווה ולשמחה שלכם — מבושל בבית ירושלמי עתיק,
+          ומגיע לכל מקום שתבחרו.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-whatsapp" href={heroWa} target="_blank" rel="noopener">הצעת מחיר בוואטסאפ</a>
+          <a class="btn btn-outline" href="/menus">לתפריטים</a>
+        </div>
+        <p class="hero-promise">{site.replyPromise}</p>
+      </div>
+      <ArchPlaceholder
+        class="hero-arch"
+        src="/images/hero-event.jpg"
+        alt="שולחן ערוך באירוע של שפע טל — קיש חם במרכז ואורחים מסביב"
+        ratio="4 / 5"
+        eager
+      />
+    </div>
+  </section>
+
+  <hr class="stone-divider" />
+
+  <!-- ── Why Tali ── -->
+  <section class="section">
+    <div class="container">
+      <ul class="trust-strip">
+        {
+          trustFacts.map((fact) => (
+            <li>
+              <Motif name={fact.motif} class="trust-motif" />
+              <span>{fact.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Menus preview ── -->
+  <section class="section menus-section">
+    <div class="container center">
+      <p class="eyebrow eyebrow-center">התפריטים</p>
+      <h2>חלבי, בשרי, או בדיוק מה שחלמתם עליו</h2>
+      <p class="lead">כל התפריטים הם נקודת פתיחה — מתאימים כל מנה לטעם ולתקציב שלכם.</p>
+      <div class="menus-grid">
+        {menus.map((menu) => <MenuCard menu={menu} preview />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Kotel band ── -->
+  <section class="kotel-band">
+    <div class="container kotel-inner">
+      <div>
+        <p class="eyebrow eyebrow-light">בר מצווה בכותל?</p>
+        <h2>הנחת תפילין מול אבני הכותל — ואנחנו מביאים את השפע</h2>
+        <p>
+          עלייה לתורה, הנחת תפילין וארוחת בוקר חגיגית ברחבת הכותל או בעיר העתיקה.
+          אנחנו במרחק דקות הליכה — הכל מגיע טרי, חם ומאורגן עד הפרט האחרון.
+        </p>
+        <a class="btn btn-light" href="/kotel">לאירועים בכותל</a>
+      </div>
+      <Motif name="arch" class="kotel-motif" />
+    </div>
+  </section>
+
+  <!-- ── About teaser ── -->
+  <section class="section">
+    <div class="container about-grid">
+      <ArchPlaceholder
+        src="/images/veg-platter.jpg"
+        alt="פלטת ירקות טריים חתוכים בעבודת יד"
+        ratio="3 / 4"
+      />
+      <div>
+        <p class="eyebrow">הסיפור שלנו</p>
+        <h2>בבית ירושלמי עתיק ומיוחד יש מטבח עם קסם נפלא</h2>
+        <p>
+          מהמטבח הביתי שלי אני מציעה מגוון של תפריטים המותאמים לכל אירוע, עם הנגיעה
+          והטעם שרק מטבח ביתי יכול לתת — עם אפשרות לניהול האירוע, שישאיר לכם פנאי לאורחים.
+        </p>
+        <p>
+          הקייטרינג פועל משכונת בתי ניסן ב"ק המתחדשת, בצמוד לעיר העתיקה בירושלים —
+          ומגיע לכל מקום שתרצו.
+        </p>
+        <p class="signature">בברכה, {site.owner} · <strong>{site.tagline}</strong></p>
+        <a class="btn btn-outline" href="/about">להכיר את טלי</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ── -->
+  <section class="section testimonials-section">
+    <div class="container center">
+      <p class="eyebrow eyebrow-center">ממליצים עלינו</p>
+      <h2>שמחות שכבר טעמו</h2>
+      <div class="testimonials-grid">
+        {homeTestimonials.map((t) => <TestimonialCard t={t} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quote form ── -->
+  <section class="section" id="quote">
+    <div class="container quote-wrap">
+      <div class="center">
+        <p class="eyebrow eyebrow-center">מתחילים</p>
+        <h2>ספרו לנו על השמחה שלכם</h2>
+        <p class="lead">ארבע שאלות קצרות — והצעת מחיר מסודרת בדרך אליכם.</p>
+      </div>
+      <QuoteForm />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+
+  .hero-promise {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--blue-700);
+    font-size: 0.95rem;
+  }
+
+  :global(.hero-arch) {
+    max-width: 380px;
+    justify-self: center;
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.hero-arch) {
+      max-width: 300px;
+      order: -1;
+    }
+  }
+
+  .trust-strip {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .trust-strip li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  :global(.trust-motif) {
+    width: 44px;
+    height: 44px;
+    color: var(--pom-600);
+  }
+
+  .menus-section {
+    background: var(--stone-100);
+  }
+
+  .menus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+    text-align: start;
+  }
+
+  .kotel-band {
+    background: linear-gradient(150deg, var(--blue-900), var(--blue-700));
+    color: var(--blue-100);
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+
+  .kotel-band h2 {
+    color: var(--paper);
+  }
+
+  .eyebrow-light {
+    color: var(--stone-200);
+  }
+
+  .kotel-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .kotel-inner .btn {
+    margin-top: 0.75rem;
+  }
+
+  :global(.kotel-motif) {
+    width: clamp(90px, 14vw, 150px);
+    color: rgba(220, 235, 239, 0.45);
+    color: color-mix(in srgb, var(--blue-100) 45%, transparent);
+  }
+
+  @media (max-width: 640px) {
+    :global(.kotel-motif) {
+      display: none;
+    }
+
+    .kotel-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .signature {
+    color: var(--ink-soft);
+  }
+
+  .about-grid .btn {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-grid > :global(figure) {
+      max-width: 260px;
+      margin-inline: auto;
+    }
+  }
+
+  .testimonials-section {
+    background: var(--stone-100);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    text-align: start;
+  }
+
+  .quote-wrap {
+    max-width: 46rem;
+  }
+
+  .quote-wrap > .center {
+    margin-bottom: 2rem;
+  }
+</style>
