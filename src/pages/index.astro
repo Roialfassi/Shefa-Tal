@@ -5,7 +5,7 @@ import MenuCard from '../components/MenuCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import Motif from '../components/Motif.astro';
-import { site, waLink } from '../data/site';
+import { site, waLink, url } from '../data/site';
 import { menus } from '../data/menus';
 import { testimonials } from '../data/testimonials';
 
@@ -37,13 +37,13 @@ const heroWa = waLink('שלום טלי! אשמח להצעת מחיר לאירו�
         </p>
         <div class="hero-ctas">
           <a class="btn btn-whatsapp" href={heroWa} target="_blank" rel="noopener">הצעת מחיר בוואטסאפ</a>
-          <a class="btn btn-outline" href="/menus">לתפריטים</a>
+          <a class="btn btn-outline" href={url('/menus')}>לתפריטים</a>
         </div>
         <p class="hero-promise">{site.replyPromise}</p>
       </div>
       <ArchPlaceholder
         class="hero-arch"
-        src="/images/hero-event.jpg"
+        src={url('/images/hero-event.jpg')}
         alt="שולחן ערוך באירוע של שפע טל — קיש חם במרכז ואורחים מסביב"
         ratio="4 / 5"
         eager
@@ -91,7 +91,7 @@ const heroWa = waLink('שלום טלי! אשמח להצעת מחיר לאירו�
           עלייה לתורה, הנחת תפילין וארוחת בוקר חגיגית ברחבת הכותל או בעיר העתיקה.
           אנחנו במרחק דקות הליכה — הכל מגיע טרי, חם ומאורגן עד הפרט האחרון.
         </p>
-        <a class="btn btn-light" href="/kotel">לאירועים בכותל</a>
+        <a class="btn btn-light" href={url('/kotel')}>לאירועים בכותל</a>
       </div>
       <Motif name="arch" class="kotel-motif" />
     </div>
@@ -101,7 +101,7 @@ const heroWa = waLink('שלום טלי! אשמח להצעת מחיר לאירו�
   <section class="section">
     <div class="container about-grid">
       <ArchPlaceholder
-        src="/images/veg-platter.jpg"
+        src={url('/images/veg-platter.jpg')}
         alt="פלטת ירקות טריים חתוכים בעבודת יד"
         ratio="3 / 4"
       />
@@ -117,7 +117,7 @@ const heroWa = waLink('שלום טלי! אשמח להצעת מחיר לאירו�
           ומגיע לכל מקום שתרצו.
         </p>
         <p class="signature">בברכה, {site.owner} · <strong>{site.tagline}</strong></p>
-        <a class="btn btn-outline" href="/about">להכיר את טלי</a>
+        <a class="btn btn-outline" href={url('/about')}>להכיר את טלי</a>
       </div>
     </div>
   </section>

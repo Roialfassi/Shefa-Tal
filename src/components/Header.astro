@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site';
+import { site, url } from '../data/site';
 
 interface Props {
   lang?: 'he' | 'en';
@@ -22,13 +22,14 @@ const nav =
       ];
 
 const callLabel = lang === 'he' ? 'התקשרו' : 'Call';
-const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = Astro.url.pathname.replace(/\/$/, '');
+const isCurrent = (href: string) => current === url(href).replace(/\/$/, '');
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href={lang === 'he' ? '/' : '/en'}>
-      <img class="brand-mark" src="/images/logo.png" alt="" width="44" height="44" />
+    <a class="brand" href={url(lang === 'he' ? '/' : '/en')}>
+      <img class="brand-mark" src={url('/images/logo.png')} alt="" width="44" height="44" />
       <span class="brand-text">
         <strong>{lang === 'he' ? 'שפע טל' : 'Shefa Tal'}</strong>
         <small>{lang === 'he' ? 'קייטרינג ביתי · ירושלים' : 'Home catering · Jerusalem'}</small>
@@ -46,7 +47,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
         {
           nav.map((item) => (
             <li>
-              <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+              <a href={url(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
                 {item.label}
               </a>
             </li>

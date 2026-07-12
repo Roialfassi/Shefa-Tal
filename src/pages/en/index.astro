@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ArchPlaceholder from '../../components/ArchPlaceholder.astro';
 import Motif from '../../components/Motif.astro';
-import { site, waLink } from '../../data/site';
+import { site, waLink, url } from '../../data/site';
 
 // English landing page for Diaspora families planning a Western Wall
 // bar/bat mitzvah — they search in English and book from abroad.
@@ -51,7 +51,7 @@ const points = [
         <p class="promise">We reply to every inquiry within one business day.</p>
       </div>
       <ArchPlaceholder
-        src="/images/tallit-boy.jpg"
+        src={url('/images/tallit-boy.jpg')}
         alt="A bar mitzvah boy wrapped in a tallit, laying tefillin"
         ratio="4 / 5"
         class="en-arch"

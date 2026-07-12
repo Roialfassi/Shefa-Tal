@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Motif from '../components/Motif.astro';
+import { url } from '../data/site';
 ---
 
 <Base title="הדף לא נמצא — קייטרינג שפע טל" description="הדף שחיפשתם לא נמצא.">
@@ -10,8 +11,8 @@ import Motif from '../components/Motif.astro';
       <h1>הדף הזה לא בתפריט</h1>
       <p class="lead" style="margin-inline: auto;">אבל יש לנו הרבה דברים טעימים אחרים.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="/">לעמוד הבית</a>
-        <a class="btn btn-outline" href="/menus">לתפריטים</a>
+        <a class="btn btn-primary" href={url('/')}>לעמוד הבית</a>
+        <a class="btn btn-outline" href={url('/menus')}>לתפריטים</a>
       </div>
     </div>
   </section>

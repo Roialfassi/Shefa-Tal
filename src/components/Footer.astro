@@ -1,5 +1,5 @@
 ---
-import { site, waLink, defaultWaMessage } from '../data/site';
+import { site, waLink, defaultWaMessage, url } from '../data/site';
 
 interface Props {
   lang?: 'he' | 'en';
@@ -11,7 +11,7 @@ const he = lang === 'he';
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img class="footer-mark" src="/images/logo.png" alt="" width="56" height="56" loading="lazy" />
+      <img class="footer-mark" src={url('/images/logo.png')} alt="" width="56" height="56" loading="lazy" />
       <p class="footer-name">{he ? site.name : site.nameEn}</p>
       <p class="footer-tagline">{he ? site.tagline : 'Naturally homemade.'}</p>
     </div>

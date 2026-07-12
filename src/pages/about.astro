@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ArchPlaceholder from '../components/ArchPlaceholder.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
-import { site, waLink, defaultWaMessage } from '../data/site';
+import { site, waLink, defaultWaMessage, url } from '../data/site';
 import { testimonials } from '../data/testimonials';
 ---
 
@@ -37,12 +37,12 @@ import { testimonials } from '../data/testimonials';
       </div>
       <div class="story-arches">
         <ArchPlaceholder
-          src="/gallery/stone-courtyard.jpg"
+          src={url('/gallery/stone-courtyard.jpg')}
           alt="עמדת כיבוד בחצר ירושלמית עתיקה מאבן"
           ratio="3 / 4"
         />
         <ArchPlaceholder
-          src="/images/veg-platter.jpg"
+          src={url('/images/veg-platter.jpg')}
           alt="פלטת ירקות טריים מהמטבח של טלי"
           ratio="3 / 4"
         />

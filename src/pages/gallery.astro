@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ArchPlaceholder from '../components/ArchPlaceholder.astro';
-import { waLink } from '../data/site';
+import { waLink, url } from '../data/site';
 
 // Real photos from Tali's events (imported from the previous site).
 // To add more: drop images into /public/gallery/ and add entries here.
@@ -38,7 +38,7 @@ const waGallery = waLink('שלום טלי! ראיתי את הגלריה באתר
   </section>
 
   <section class="container gallery-grid">
-    {photos.map((photo) => <ArchPlaceholder src={photo.src} alt={photo.alt} ratio="3 / 4" />)}
+    {photos.map((photo) => <ArchPlaceholder src={url(photo.src)} alt={photo.alt} ratio="3 / 4" />)}
   </section>
 
   <section class="section center">

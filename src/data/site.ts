@@ -34,5 +34,13 @@ export function waLink(message: string): string {
   return `https://wa.me/${site.phoneIntl}?text=${encodeURIComponent(message)}`;
 }
 
+// Prefixes internal paths with Astro's `base`, needed while the site is
+// served from a subpath on GitHub Pages: url('/menus') → '/Shefa-Tal/menus'.
+// Once `base` is removed from astro.config.mjs this becomes a no-op.
+export function url(path: string): string {
+  const base = import.meta.env.BASE_URL;
+  return (base.endsWith('/') ? base.slice(0, -1) : base) + path;
+}
+
 export const defaultWaMessage =
   'שלום טלי! ראיתי את האתר של קייטרינג שפע טל ואשמח לשמוע פרטים על אירוע.';

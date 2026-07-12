@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ArchPlaceholder from '../components/ArchPlaceholder.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { waLink } from '../data/site';
+import { waLink, url } from '../data/site';
 
 const waKotel = waLink('שלום טלי! אנחנו מתכננים אירוע בכותל ואשמח לשמוע פרטים.');
 
@@ -38,7 +38,7 @@ const steps = [
         <a class="btn btn-whatsapp" href={waKotel} target="_blank" rel="noopener">לתיאום אירוע בכותל</a>
       </div>
       <ArchPlaceholder
-        src="/images/tallit-boy.jpg"
+        src={url('/images/tallit-boy.jpg')}
         alt="נער בר מצווה עוטה טלית ומניח תפילין"
         ratio="4 / 5"
         class="kotel-arch"

@@ -1,6 +1,7 @@
 ---
 import type { Menu } from '../data/menus';
 import Motif from './Motif.astro';
+import { url } from '../data/site';
 
 interface Props {
   menu: Menu;
@@ -26,7 +27,7 @@ const previewItems = menu.sections.flatMap((s) => s.items).slice(0, 4);
               <li>{item}</li>
             ))}
           </ul>
-          <a class="menu-link" href={`/menus#${menu.id}`}>
+          <a class="menu-link" href={url(`/menus#${menu.id}`)}>
             לתפריט המלא ←
           </a>
         </>
