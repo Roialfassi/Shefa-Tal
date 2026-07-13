@@ -23,19 +23,13 @@ const jsonLd = {
   alternateName: site.nameEn,
   description:
     lang === 'he'
-      ? 'קייטרינג ביתי בירושלים לבריתות, בר ובת מצווה ואירועים בכותל — מהמטבח הביתי של טלי, בצמוד לעיר העתיקה.'
-      : 'Home-kitchen kosher catering in Jerusalem for britot, bar and bat mitzvahs and Western Wall events.',
+      ? 'קייטרינג ביתי לבריתות, בר ובת מצווה ושמחות משפחתיות — תפריט אישי מהמטבח הביתי של טלי.'
+      : 'Home-kitchen kosher catering for britot, bar and bat mitzvahs and family celebrations — a personal menu, homemade.',
   servesCuisine: 'Kosher',
   telephone: `+${site.phoneIntl}`,
   url: Astro.site?.toString(),
   sameAs: [site.facebookUrl],
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: "HaNevi'im 8",
-    addressLocality: 'Jerusalem',
-    addressCountry: 'IL',
-  },
-  areaServed: 'Jerusalem',
+  areaServed: 'IL',
 };
 ---
 

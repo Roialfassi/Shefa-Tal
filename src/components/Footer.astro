@@ -27,19 +27,11 @@ const he = lang === 'he';
     </div>
 
     <div>
-      <h3>{he ? 'איפה אנחנו' : 'Find us'}</h3>
-      <ul class="footer-list">
-        <li>{he ? site.address : site.addressEn}</li>
-        <li>{he ? site.neighborhood : "Batei Nissan, by the Old City"}</li>
-        <li><a href={site.wazeUrl} target="_blank" rel="noopener">{he ? 'ניווט ב-Waze' : 'Navigate with Waze'}</a></li>
-      </ul>
-    </div>
-
-    <div>
       <h3>{he ? 'טוב לדעת' : 'Good to know'}</h3>
       <ul class="footer-list">
+        <li>{he ? 'מגיעים לכל מקום שתבחרו' : 'We come to wherever you celebrate'}</li>
         <li>{he ? site.kashrut : 'Kosher — ask Tali for details'}</li>
-        <li>{he ? site.replyPromise : 'We reply within one business day'}</li>
+        <li>{he ? site.replyPromise : 'We reply quickly — try us'}</li>
       </ul>
     </div>
   </div>

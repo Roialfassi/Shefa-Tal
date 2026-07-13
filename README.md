@@ -1,6 +1,6 @@
 # קייטרינג שפע טל — Shefa Tal Catering website
 
-Mobile-first, Hebrew-RTL marketing site for Tali's Jerusalem catering business, built with [Astro](https://astro.build) as a fully static site. Every page pushes toward one action: **sending Tali a WhatsApp message**.
+Mobile-first, Hebrew-RTL marketing site for Tali's home catering business, built with [Astro](https://astro.build) as a fully static site. Every page pushes toward one action: **sending Tali a WhatsApp message**.
 
 ## Commands
 
@@ -17,7 +17,7 @@ npm run preview   # serve the built dist/ locally
 | --- | --- |
 | `/` | Homepage — hero, menus preview, Kotel band, story, testimonials, quote form |
 | `/menus` | Full dairy / meat / custom menus + pricing explanation |
-| `/kotel` | Landing page for Western Wall / Old City events (her strongest niche) |
+| `/kotel` | Landing page for Western Wall / Old City events (no proximity claims — the business is no longer Jerusalem-based) |
 | `/gallery` | Photo gallery (placeholders until real photos arrive) |
 | `/about` | Tali's story + all 11 real testimonials from the old site |
 | `/contact` | All contact channels + quote form |
@@ -28,7 +28,7 @@ npm run preview   # serve the built dist/ locally
 Search the codebase for `TODO`. Current status:
 
 1. ~~**Phone number**~~ — DONE: `052-330-4074`, taken from the old site's own WhatsApp button. Double-check with Tali that this is the number she wants leads on.
-2. **Email** — `alihano@gmail.com` was found as the contact address on the old site; confirm it's current.
+2. ~~**Email**~~ — DONE: `talihano@gmail.com`.
 3. **Kashrut wording** — `src/data/site.ts` → `kashrut`. Ask Tali exactly what she can claim (certificate? which rabbinate?) — do not guess; this is a trust-critical religious claim.
 4. **Menus** — `src/data/menus.ts` is a **draft** based on dishes shown in her old site's gallery. Review every item with Tali.
 5. ~~**Photos**~~ — DONE: her real photos and logo were imported from the old site (`public/images/`, `public/gallery/`). Note: the gallery files are the old site's web-compressed versions (~450px). The site displays them well, but when Tali can send the originals (phone/Drive), drop higher-res files over the same filenames. A photo of **Tali herself in the kitchen** is still the biggest missing shot (for `/about`).

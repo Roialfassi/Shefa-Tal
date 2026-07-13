@@ -14,20 +14,14 @@ export const site = {
   phoneIntl: '972523304074',
   phoneDisplay: '052-330-4074',
 
-  // Found as the contact address on the old site — TODO: confirm with Tali it's current
-  email: 'alihano@gmail.com',
+  email: 'talihano@gmail.com',
 
   // TODO: confirm kashrut wording with Tali before publishing
   kashrut: 'לפרטי הכשרות — דברו עם טלי',
 
-  address: 'רחוב הנביאים 8, ירושלים',
-  addressEn: "8 HaNevi'im St., Jerusalem",
-  neighborhood: 'שכונת בתי ניסן ב"ק, בצמוד לעיר העתיקה',
-
-  wazeUrl: 'https://waze.com/ul?q=%D7%94%D7%A0%D7%91%D7%99%D7%90%D7%99%D7%9D%208%20%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D',
   facebookUrl: 'https://www.facebook.com/tali.shefatal/',
 
-  replyPromise: 'חוזרים לכל פנייה עד יום עסקים אחד',
+  replyPromise: 'חוזרים אליכם מהר — נסו אותנו',
 } as const;
 
 export function waLink(message: string): string {
